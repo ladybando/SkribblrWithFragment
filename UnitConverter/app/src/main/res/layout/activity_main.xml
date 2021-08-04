@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:id="@+id/fahrenheit_input"
+        android:layout_width="189dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="204dp"
+        android:cursorVisible="true"
+        android:fontFamily="@font/arima_madurai_bold"
+        android:hint="@string/fahrenheit_value_field"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/primary_yellow_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/celsius_input"
+        android:layout_width="182dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="108dp"
+        android:cursorVisible="true"
+        android:fontFamily="@font/arima_madurai_bold"
+        android:hint="@string/celsius_value_field"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColorHint="@color/primary_pink_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/enter_values"
+        android:layout_width="238dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/arima_madurai_bold"
+        android:text="@string/enter_unit_values"
+        android:textColor="@color/primary_pink_dark"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/convert_button"
+        android:layout_width="121dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="200dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/walter_turncoat"
+        android:text="@string/convert_button"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:translationY="8dp"
+        android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enter_values" />
+
+    <Button
+        android:id="@+id/clear_button"
+        android:layout_width="89dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="148dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/walter_turncoat"
+        android:paddingBottom="8dp"
+        android:text="@string/clear_button"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/convert_button"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/imageButtonCels"
+        android:layout_width="54dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="28dp"
+        android:contentDescription="@string/celsius_image_button"
+        app:layout_constraintBottom_toTopOf="@+id/celsius_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/color_c__1_" />
+
+    <ImageButton
+        android:id="@+id/imageButtonFahr"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="92dp"
+        android:contentDescription="@string/fahrenheit_image_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fahrenheit_input"
+        app:layout_constraintVertical_bias="0.756"
+        app:srcCompat="@drawable/color_f__2_" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
