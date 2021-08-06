@@ -12,7 +12,7 @@ This project is a simple unit conversion app that currently supports Fahrenheit 
 ## Technologies
 Project is created with:
 * Kotlin Version: 1.5.21
-* Android Studio: Arctic Fox
+* Android Studio: Arctic Fox 2020.3.1
 * Gradle Version: 7.0
 	
 ## Setup
