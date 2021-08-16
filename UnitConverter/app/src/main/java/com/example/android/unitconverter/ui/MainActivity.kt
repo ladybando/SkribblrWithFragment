@@ -2,16 +2,21 @@ package com.example.android.unitconverter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.android.unitconverter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    // Obtain ViewModel from ViewModelProviders
+    private val viewModel by lazy { ViewModelProvider(this).get(SimpleViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val binding : ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.viewmodel=viewModel
         setListeners()
     }
 

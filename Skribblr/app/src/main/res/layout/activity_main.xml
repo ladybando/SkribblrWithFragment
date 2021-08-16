@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+<!--TODO create scrollable grid list
+ TODO first row shows snippet of list clicking opens full list and option to create new list
+ TODO next list shows editable text field to start a new quick note
+ TODO add action button (plus sign) to add a new note or task-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        app:layoutManager="LinearLayoutManager"/>
+</FrameLayout>

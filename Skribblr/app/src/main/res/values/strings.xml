@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Skribblr</string>
+    <string name="skribble1">Take out trash</string>
+    <string name="skribble2">Wash clothes</string>
+    <string name="skribble3">Fold clothes</string>
+    <string name="skribble4">Throw clothes in trash!</string>
+    <string name="skribble5">Refer to task 1</string>
+</resources>
