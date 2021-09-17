@@ -2,24 +2,48 @@ package com.example.android.skribblr
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
-import com.example.android.skribblr.adapter.ItemAdapter
-import com.example.android.skribblr.data.Datasource
+import android.view.View
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.android.skribblr.adapter.RecyclerViewAdapter
+import com.example.android.skribblr.data.DataSource
+import com.example.android.skribblr.databinding.ActivityMainBinding
+import com.example.android.skribblr.model.ViewModel
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Initialize data.
-        val myDataset = Datasource().loadSkribbls()
+        val recyclerView=binding.recyclerView
+        recyclerView.layoutManager=StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val list = mutableListOf<ViewModel>()
+        val adapter = RecyclerViewAdapter(list)
+        recyclerView.adapter = adapter
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.adapter = ItemAdapter(this, myDataset)
+        binding.textInLayout.visibility = View.INVISIBLE
 
-        // Use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true)
+        binding.fab.setOnClickListener {
+            //makes text view visible on screen so a new task can be added
+            binding.textInLayout.visibility=View.VISIBLE
+
+            binding.submitButton.setOnClickListener {
+                //mutableList is not saving to memory
+                val saveList=DataSource().skribblList()
+                if (saveList.isNotEmpty()){
+                    saveList[0]
+                }
+
+                //page initially starts blank
+                //can try any() call to see if list is empty and if it's not display what has  been entered
+                val inputString=binding.editText.text.toString()
+                list.add(ViewModel(inputString))
+                saveList.add(inputString)
+                adapter.notifyDataSetChanged()
+                binding.editText.text.clear()
+            }
+            //TODO refactor after navigation lesson to use fragment
+            // setContentView(R.layout.fragment_new_skribbl)
+        }
     }
-
 }

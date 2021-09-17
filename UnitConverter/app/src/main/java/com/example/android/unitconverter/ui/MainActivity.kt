@@ -1,71 +1,79 @@
-package com.example.android.unitconverter
+package com.example.android.unitconverter.ui
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import com.example.android.unitconverter.R
+import com.example.android.unitconverter.R.string.convert_results
+import com.example.android.unitconverter.data.UnitsViewModel
 import com.example.android.unitconverter.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     // Obtain ViewModel from ViewModelProviders
-    private val viewModel by lazy { ViewModelProvider(this).get(SimpleViewModel::class.java) }
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(UnitsViewModel::class.java)
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+   override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       //on creation input fields are blank
+       fahrenheit_input.visibility = View.GONE
+       celsius_input.visibility=View.GONE
+
         val binding : ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner=this
         binding.viewmodel=viewModel
+
+       binding.imageButtonCels.setOnClickListener{
+           fahrenheit_input.visibility = View.VISIBLE
+       }
+       binding.imageButtonFahr.setOnClickListener{
+           celsius_input.visibility = View.VISIBLE
+       }
         setListeners()
     }
 
     private fun setListeners(){
-        //hide textview until image button is clicked
-        binding.celsiusInput.visibility = View.INVISIBLE
-        binding.fahrenheitInput.visibility = View.INVISIBLE
-        //show fields onclick
-        binding.imageButtonCels.setOnClickListener{
-            binding.celsiusInput.visibility = View.VISIBLE
-            binding.fahrenheitInput.visibility = View.VISIBLE
-        }
-        binding.imageButtonFahr.setOnClickListener{
-            binding.celsiusInput.visibility = View.VISIBLE
-            binding.fahrenheitInput.visibility = View.VISIBLE
-        }
         //start calculations with convert click
-        binding.convertButton.setOnClickListener { calcUnit() }
+        findViewById<Button>(R.id.convert_button).setOnClickListener { calcUnit() }
         //clear calculations with clear button and clear text view
-        binding.clearButton.setOnClickListener {
-            binding.celsiusInput.text = null
-            binding.fahrenheitInput.text = null
-            binding.celsiusInput.visibility = View.INVISIBLE
-            binding.fahrenheitInput.visibility = View.INVISIBLE
+        findViewById<Button>(R.id.clear_button).setOnClickListener {
+            findViewById<EditText>(R.id.celsius_input).text = null
+            findViewById<EditText>(R.id.fahrenheit_input).text = null
+            findViewById<EditText>(R.id.celsius_input).visibility = View.INVISIBLE
+            findViewById<EditText>(R.id.fahrenheit_input).visibility = View.INVISIBLE
         }
     }
 
     private fun calcUnit() {
         //get text stored in text field and assign to variable
-        val stringFahrUnit = binding.fahrenheitInput.text.toString()
-        val stringCelsUnit = binding.celsiusInput.text.toString()
+        val stringFahrUnit = findViewById<EditText>(R.id.fahrenheit_input).text.toString()
+        val stringCelsUnit = findViewById<EditText>(R.id.celsius_input).text.toString()
         //convert stored text to double for calculations
         var convertFahr = stringFahrUnit.toDoubleOrNull()
         var convertCels = stringCelsUnit.toDoubleOrNull()
         //perform calculations based on whichever field is selected
-        if (binding.fahrenheitInput.isFocusableInTouchMode && convertFahr != null) {
+        if (findViewById<EditText>(R.id.fahrenheit_input).isFocusableInTouchMode && convertFahr != null) {
             convertFahr = (convertFahr - 32) * 5 / 9
-            binding.celsiusInput.setText(
+            findViewById<EditText>(R.id.celsius_input).setText(
                 getString(
-                    R.string.convert_results,
+                    convert_results,
                     convertFahr.toString()
                 )
             )
         } else {
             if (convertCels != null) {
                 convertCels = (convertCels * 9 / 5) + 32
-                binding.fahrenheitInput.setText(
+                findViewById<EditText>(R.id.fahrenheit_input).setText(
                     getString(
-                        R.string.convert_results,
+                        convert_results,
                         convertCels.toString()
                     )
                 )

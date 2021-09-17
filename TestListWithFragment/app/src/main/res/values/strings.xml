@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TestListWithFragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="submit_button">Submit</string>
+    <string name="edit_text_list">Enter text here</string>
+    <string name="edit_text_main">Enter text here</string>
+    <string name="new_task">new task</string>
+    <string name="menu_transform">resource menu</string>
+    <string name="menu_reflow">menu</string>
+    <string name="sample_task">sample task</string>
+    <string name="submit">Submit</string>
+</resources>

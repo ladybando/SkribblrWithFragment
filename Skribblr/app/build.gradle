@@ -1,8 +1,7 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
 
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdk 31
@@ -23,6 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures{
+        viewBinding=true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -31,9 +33,9 @@ android {
         jvmTarget = '1.8'
     }
 }
-
 dependencies {
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def room_version = "2.3.0"
 
     implementation("androidx.room:room-runtime:$room_version")
