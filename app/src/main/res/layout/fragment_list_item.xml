@@ -1,0 +1,33 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_list_item"
+    android:checkable="true"
+    android:clickable="true"
+    android:focusable="true"
+    android:scrollbars="vertical"
+    android:padding="8dp"
+    android:layout_margin="8dp"
+    tools:showIn="@layout/activity_main">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/list_item_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/sample_task"
+            android:text="@string/sample_task" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <FrameLayout
+        android:id="@+id/edit_task_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>
