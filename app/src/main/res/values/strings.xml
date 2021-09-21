@@ -17,9 +17,9 @@
     <string name="submit">Submit</string>
     <string name="action_settings">Settings</string>
 
-    <string name="confirmation">Are you sure you want to delete?</string>
-    <string name="affirmation">Yes</string>
-    <string name="denial">No</string>
+    <string name="affirmation">Are you sure you want to delete?</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="list_item_fragment_label">List Item</string>
