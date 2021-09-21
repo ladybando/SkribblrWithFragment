@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditTaskActivity">
+    tools:context=".EditItemActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,6 +19,7 @@
             android:layout_marginTop="60dp"
             android:autofillHints="Test skribbl"
             android:hint="@string/sample_task"
+            android:textColorHint="@color/primary_light"
             android:inputType="textMultiLine"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +31,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="60dp"
             android:contentDescription="@string/submit"
+            android:minHeight="48dp"
             android:src="@drawable/ic_keyboard_return"
             app:layout_constraintStart_toEndOf="@+id/edit_text"
             app:layout_constraintTop_toTopOf="parent" />

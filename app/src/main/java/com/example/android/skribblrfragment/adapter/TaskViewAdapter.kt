@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.skribblrfragment.EditItemActivity
 import com.example.android.skribblrfragment.INTENT_DATA_NAME
 import com.example.android.skribblrfragment.R
+import com.example.android.skribblrfragment.data.DataSource
 import com.example.android.skribblrfragment.databinding.ListItemBinding
-import com.example.android.skribblrfragment.model.SharedViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class TaskViewAdapter(
     private val context: Context,
-    private val dataSet: MutableList<SharedViewModel>,
+    private val dataSet: MutableList<DataSource>,
 ) :
     RecyclerView.Adapter<TaskViewAdapter.ViewHolder>() {
 

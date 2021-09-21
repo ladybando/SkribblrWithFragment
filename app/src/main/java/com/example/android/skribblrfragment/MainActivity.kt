@@ -2,21 +2,23 @@ package com.example.android.skribblrfragment
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.android.skribblrfragment.adapter.TaskViewAdapter
+import com.example.android.skribblrfragment.data.DataSource
 import com.example.android.skribblrfragment.databinding.ActivityMainBinding
 import com.example.android.skribblrfragment.model.SharedViewModel
 //TODO refactor and use viewModel
 // TODO then liveData
 //  TODO then refactor redundant code
-val list = mutableListOf<SharedViewModel>()
+val list = mutableListOf<DataSource>()
 const val INTENT_DATA_NAME = "data"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    private val viewModel: SharedViewModel by viewModels()
     private var recyclerView : RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

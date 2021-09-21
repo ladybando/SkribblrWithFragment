@@ -3,11 +3,14 @@ package com.example.android.skribblrfragment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import com.example.android.skribblrfragment.data.DataSource
 import com.example.android.skribblrfragment.databinding.ActivityEditItemBinding
 import com.example.android.skribblrfragment.model.SharedViewModel
 
 class EditItemActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditItemBinding
+    private val viewModel: SharedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,19 +23,19 @@ class EditItemActivity : AppCompatActivity() {
         userInput.setText(dataFromMain)
 
         binding.submitEditButton.setOnClickListener {
-            /*todo confirm why all text is deleted. confirm correct buttons are selected for editing*/
+            //todo identify what is needed to actually update edited task
 
             // Clear the EditText field
-            val edittedUserInput = userInput.text.toString()
+            val editedUserInput = userInput.text.toString()
             val intent = Intent()
-            for (index in 0 until list.size) {
+            for (index in 0 until viewModel.taskList.value!!.size) {
                 //get index of item to be replaced
-                if(userInput.equals(list[index])) {
+                if(userInput.equals(viewModel.taskList.value!![index])) {
                     //set it with new user inputted data
-                    list[index] = SharedViewModel(edittedUserInput)
+                    viewModel.taskList.value!![index] = DataSource(editedUserInput)
                 }
             }
-            intent.putExtra(INTENT_DATA_NAME, edittedUserInput)
+            intent.putExtra(INTENT_DATA_NAME, DataSource(editedUserInput).toString())
             setResult(RESULT_OK, intent)
             userInput.text.clear()
             startActivity(Intent(this@EditItemActivity, MainActivity::class.java))
