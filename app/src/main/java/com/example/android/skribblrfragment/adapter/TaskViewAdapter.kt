@@ -5,16 +5,16 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.skribblrfragment.EditItemActivity
 import com.example.android.skribblrfragment.INTENT_DATA_NAME
+import com.example.android.skribblrfragment.ListOfItemsActivity
 import com.example.android.skribblrfragment.R
-import com.example.android.skribblrfragment.data.DataSource
+import com.example.android.skribblrfragment.databinding.ActivityListOfItemsBinding
 import com.example.android.skribblrfragment.databinding.ListItemBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class TaskViewAdapter(
     private val context: Context,
-    private val dataSet: MutableList<DataSource>,
+    private val dataSet: MutableList<String>,
 ) :
     RecyclerView.Adapter<TaskViewAdapter.ViewHolder>() {
 
@@ -25,11 +25,11 @@ class TaskViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
-            binding.listOfItemsView.text = dataSet[position].notes
+            binding.listOfItemsView.text = dataSet[position]
 
             binding.listOfItemsView.setOnClickListener {
-                val intent = Intent(context, EditItemActivity::class.java)
-                intent.putExtra(INTENT_DATA_NAME, dataSet[position].notes)
+                val intent = Intent(context, ListOfItemsActivity::class.java)
+                intent.putExtra(INTENT_DATA_NAME, dataSet[position])
                 context.startActivity(intent)
             }
             binding.listOfItemsView.setOnLongClickListener {

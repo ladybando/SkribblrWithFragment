@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Scribbles</string>
+    <string name="app_name">Skribbl</string>
     <string name="view">view</string>
     <string name="float_button">Add new scribble</string>
     <!-- Test tasks -->

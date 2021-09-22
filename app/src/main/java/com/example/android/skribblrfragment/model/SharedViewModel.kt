@@ -11,12 +11,12 @@ class SharedViewModel : ViewModel() {
     private val userInput: String
         get() = _userInput
 
-    private var _taskList: MutableLiveData<MutableList<DataSource>> = MutableLiveData(mutableListOf())
-    val taskList: MutableLiveData<MutableList<DataSource>>
+    private var _taskList: MutableList<String> = mutableListOf()
+    val taskList: MutableList<String>
         get() = _taskList
 
 
     fun addNewTask(){
-        taskList.value = mutableListOf(DataSource(userInput))
+        _taskList = mutableListOf(userInput)
     }
 }
