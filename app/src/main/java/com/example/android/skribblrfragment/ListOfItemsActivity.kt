@@ -1,14 +1,9 @@
 package com.example.android.skribblrfragment
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.ImageButton
-import androidx.activity.viewModels
-import com.example.android.skribblrfragment.adapter.TaskViewAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.example.android.skribblrfragment.databinding.ActivityListOfItemsBinding
-import com.example.android.skribblrfragment.model.SharedViewModel
 
 class ListOfItemsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListOfItemsBinding
