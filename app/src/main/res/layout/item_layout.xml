@@ -5,14 +5,20 @@
     android:clickable="true"
     android:focusable="true"
     android:checkable="true"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:elevation="8dp"
+    android:background="@android:color/transparent"
+    android:backgroundTint="#212121">
 
     <TextView
         android:id="@+id/list_of_items_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Sample Text"
+        android:text="@string/sample_task"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

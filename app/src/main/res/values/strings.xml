@@ -11,7 +11,7 @@
     <string name="scribble6">Enter Text</string>
 
     <string name="title">Scribble</string>
-    <string name="sample_task">text to be entered</string>
+    <string name="sample_task">Type here</string>
     <string name="enter_new_note">Enter new note</string>
     <string name="submit_new_button">Submit new task</string>
     <string name="submit">Submit</string>
@@ -24,4 +24,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="list_item_fragment_label">List Item</string>
     <string name="fragment_new_item">new item fragment</string>
+    <string name="set_due_date">Set the Date</string>
 </resources>
