@@ -1,9 +1,6 @@
 package com.example.android.skribblrfragment.model
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.skribblrfragment.data.DataSource
 
 class SharedViewModel : ViewModel() {
 
@@ -19,4 +16,5 @@ class SharedViewModel : ViewModel() {
     fun addNewTask(){
         _taskList = mutableListOf(userInput)
     }
+
 }
