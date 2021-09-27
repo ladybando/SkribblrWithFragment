@@ -1,10 +1,9 @@
 package com.example.android.skribblrfragment
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.android.skribblrfragment.databinding.ActivityListOfItemsBinding
-
 
 class ListOfItemsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListOfItemsBinding
