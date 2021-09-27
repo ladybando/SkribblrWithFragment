@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ListOfItemsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,16 +21,18 @@
             android:autofillHints="Test skribbl"
             android:hint="@string/sample_task"
             android:inputType="textMultiLine"
-            android:textColorHint="#8D6E63"
+            android:textColor="@color/primary_light"
+            android:textColorHint="@color/primary_light"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/submit_new_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="49dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="60dp"
+            android:background="@drawable/rounded_corner"
             android:contentDescription="@string/submit"
             android:minHeight="48dp"
             android:src="@drawable/ic_keyboard_return"
