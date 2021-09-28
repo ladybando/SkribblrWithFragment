@@ -2,13 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:clickable="true"
     android:focusable="true"
     android:checkable="true"
     android:layout_margin="8dp"
     android:elevation="8dp"
     android:background="@android:color/transparent"
-    android:backgroundTint="#212121">
+    android:backgroundTint="#212121"
+    tools:context=".fragments.TaskLayoutFragment">
 
     <TextView
         android:id="@+id/list_of_items_view"
