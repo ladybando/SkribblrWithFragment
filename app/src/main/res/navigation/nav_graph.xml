@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/recyclerViewFragment2">
+    app:startDestination="@id/recyclerViewFragment">
 
     <fragment
         android:id="@+id/taskListFragment"
@@ -13,14 +13,17 @@
         <argument
             android:name="userInput"
             app:argType="string" />
+        <action
+            android:id="@+id/action_taskListFragment_to_recyclerViewFragment"
+            app:destination="@id/recyclerViewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/recyclerViewFragment2"
+        android:id="@+id/recyclerViewFragment"
         android:name="com.example.android.skribblrfragment.fragments.RecyclerViewFragment"
         android:label="fragment_recycler_view"
         tools:layout="@layout/fragment_recycler_view" >
         <action
-            android:id="@+id/action_recyclerViewFragment2_to_taskListFragment"
+            android:id="@+id/action_recyclerViewFragment_to_taskListFragment"
             app:destination="@id/taskListFragment" />
     </fragment>
 </navigation>

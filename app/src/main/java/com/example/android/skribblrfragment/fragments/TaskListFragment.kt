@@ -5,12 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.android.skribblrfragment.databinding.FragmentTaskListBinding
+import com.example.android.skribblrfragment.model.SharedViewModel
 
 class TaskListFragment : Fragment() {
 
     private var _binding : FragmentTaskListBinding? = null
     private val binding get() = _binding!!
+    private val args : TaskListFragmentArgs by navArgs()
+    private val viewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,13 +28,13 @@ class TaskListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val userInput = binding.newItemEditText
-        // val dataFromMain = intent.getStringExtra(INTENT_DATA_NAME)
-        // set text from main to editText field
-        //userInput.setText(dataFromMain)
+        val editTextView = binding.newItemEditText
+        val userInput = args.userInput
+        editTextView.setText(userInput)
 
         binding.submitNewButton.setOnClickListener {
-            TODO("not yet implemented")
+            val action = TaskListFragmentDirections.actionTaskListFragmentToRecyclerViewFragment()
+            findNavController().navigate(action)
         }
     }
 
