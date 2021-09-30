@@ -12,6 +12,7 @@ class SharedViewModel : ViewModel() {
     val taskList: MutableList<String>
         get() = _taskList
 
+    var listPosition : Int = -1
 
     fun addNewTask(){
         _taskList = mutableListOf(userInput)

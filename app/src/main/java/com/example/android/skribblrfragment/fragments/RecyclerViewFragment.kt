@@ -2,10 +2,11 @@ package com.example.android.skribblrfragment.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -20,18 +21,21 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
 
-    private var _binding : FragmentRecyclerViewBinding? = null
+    private var _binding: FragmentRecyclerViewBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView : RecyclerView
+
+    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TaskViewAdapter
+
     private val viewModel: SharedViewModel by activityViewModels()
-    private var position = -1
-    private val args : TaskListFragmentArgs by navArgs()
+    private val args: RecyclerViewFragmentArgs by navArgs()
+
+    private var input: String? = " "
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
         return binding.root
@@ -39,30 +43,28 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         recyclerView = binding.recyclerView
-        adapter = TaskViewAdapter(this, this.requireContext())
+        adapter = TaskViewAdapter(this, this.requireContext(), viewModel.taskList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         binding.submitButton.setOnClickListener {
-        //todo add if statement to test if null or use ? or !!
-           val input : String = " "
-           val action = RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(input)
+            val action =
+                RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(input!!)
             findNavController().navigate(action)
         }
-
     }
 
     override fun onTaskClicked(index: Int) {
-
-        val action = RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(args.userInput)
+        viewModel.listPosition = index
+        val newUserInput = viewModel.taskList[viewModel.listPosition]
+        val action =
+            RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(newUserInput)
+        adapter.notifyDataSetChanged()
         findNavController().navigate(action)
-        /* val intent = Intent(this, ListOfItemsActivity::class.java)
-         intent.putExtra(INDEX, index)
-         intent.putExtra(INTENT_DATA_NAME, viewModel.taskList[index])
-         position = index
-         resultLauncher.launch(intent)*/
+
     }
 
     override fun onLongTaskClicked(context: Context, index: Int) {
@@ -74,9 +76,9 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
                 dialog.dismiss()
             }
             .setPositiveButton(R.string.accept) { _, _ ->
-                position = index
-                viewModel.taskList.removeAt(position)
-                adapter.notifyItemRemoved(position)
+                viewModel.listPosition = index
+                viewModel.taskList.removeAt(viewModel.listPosition)
+                adapter.notifyItemRemoved(viewModel.listPosition)
             }
             .show()
     }

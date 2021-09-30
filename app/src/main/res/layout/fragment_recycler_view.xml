@@ -17,10 +17,12 @@
         android:contentDescription="@string/submit"
         android:layout_gravity="end|bottom"/>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
         tools:listitem="@layout/item_layout" />
+
 </FrameLayout>
