@@ -38,6 +38,9 @@ class TaskListFragment : Fragment() {
         binding.submitNewButton.setOnClickListener {
             val newInput = editTextView.text.toString()
             val isInEditingMode = args.isEditingTask
+            // Only add the input to the existing list if we are not in editing mode. If we are in
+            // editing mode, the edited task is passed by to RecyclerViewFragment and handled in
+            // onResume()
             if (!isInEditingMode) {
                 viewModel.taskList.add(newInput)
             }
