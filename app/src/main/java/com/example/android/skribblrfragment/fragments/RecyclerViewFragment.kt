@@ -56,6 +56,18 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
             findNavController().navigate(action)
         }
     }
+    
+    //i've tried adding it to onViewCreated, creating a different function and then calling it
+    //and then onResume()
+    //the task is not edited. it's just added
+    override fun onResume() {
+        super.onResume()
+        val editedInput = args.editUserInput
+        viewModel.taskList.add(editedInput!!)
+        val position  = viewModel.taskList.indexOf(editedInput)
+        viewModel.listPosition = position
+        adapter.notifyItemChanged(position)
+    }
 
     override fun onTaskClicked(index: Int) {
         viewModel.listPosition = index
