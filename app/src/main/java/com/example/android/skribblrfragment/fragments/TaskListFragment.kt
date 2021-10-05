@@ -31,13 +31,17 @@ class TaskListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val editTextView = binding.taskListEditText
         val userInput = args.newUserInput
-        Log.d("TaskList input", userInput!!)
         editTextView.setText(userInput)
-        //editTextView.text.clear()
 
         binding.submitNewButton.setOnClickListener {
             val newInput = editTextView.text.toString()
-            viewModel.taskList.add(newInput)
+            val isInEditingMode = args.isEditingTask
+            // Only add the input to the existing list if we are not in editing mode. If we are in
+            // editing mode, the edited task is passed by to RecyclerViewFragment and handled in
+            // onResume()
+            if (!isInEditingMode) {
+                viewModel.taskList.add(newInput)
+            }
             val action =
                 TaskListFragmentDirections.actionTaskListFragmentToRecyclerViewFragment(newInput)
             findNavController().navigate(action)

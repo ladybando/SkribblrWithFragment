@@ -2,7 +2,6 @@ package com.example.android.skribblrfragment.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +14,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.android.skribblrfragment.R
 import com.example.android.skribblrfragment.adapter.TaskViewAdapter
 import com.example.android.skribblrfragment.databinding.FragmentRecyclerViewBinding
-import com.example.android.skribblrfragment.databinding.ItemLayoutBinding
 import com.example.android.skribblrfragment.model.SharedViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.processNextEventInCurrentThread
 
 class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
 
@@ -29,8 +28,6 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
 
     private val viewModel: SharedViewModel by activityViewModels()
     private val args: RecyclerViewFragmentArgs by navArgs()
-
-    private var input: String? = " "
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,29 +42,46 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = binding.recyclerView
-        adapter = TaskViewAdapter(this, this.requireContext(), viewModel.taskList)
+        adapter = TaskViewAdapter(this, this.requireContext())
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
         binding.submitButton.setOnClickListener {
             val action =
-                RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(input!!)
+                RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(args.editUserInput)
             findNavController().navigate(action)
         }
     }
 
-    override fun onTaskClicked(index: Int) {
-        viewModel.listPosition = index
-        val newUserInput = viewModel.taskList[viewModel.listPosition]
-        val action =
-            RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(newUserInput)
-        adapter.notifyDataSetChanged()
-        findNavController().navigate(action)
+    override fun onResume() {
+        super.onResume()
+        val editedInput = args.editUserInput
+        val position = viewModel.listPosition
+        // Don't attempt to update any items in the list unless we have previously set a position
+        // for the item that needs to be updated
+        if (position != -1) {
+            viewModel.taskList[position] = editedInput!!
+            adapter.notifyItemChanged(position)
+            // Reset position to -1 so adding a new task doesn't change previously edited tasks
+            viewModel.listPosition = -1
+        }
+    }
 
+    //upon return to RecyclerViewFragment
+
+    override fun onTaskClicked(index: Int) {
+        //todo fix issue if user submits blank task
+        val taskToEditString = viewModel.taskList[index]
+        val action =
+            RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(
+                taskToEditString)
+        viewModel.listPosition = index
+        findNavController().navigate(action)
     }
 
     override fun onLongTaskClicked(context: Context, index: Int) {
+        //todo fix issue if user submits blank task
         MaterialAlertDialogBuilder(context)
             .setTitle(R.string.title)
             .setMessage(R.string.affirmation)

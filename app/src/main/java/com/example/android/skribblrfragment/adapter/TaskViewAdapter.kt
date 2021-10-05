@@ -1,21 +1,18 @@
 package com.example.android.skribblrfragment.adapter
 
 import android.content.Context
-import android.service.autofill.Dataset
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.skribblrfragment.databinding.ItemLayoutBinding
 
 class TaskViewAdapter(
     private val listener: Listener,
-    private val context: Context,
-    private var dataSet: MutableList<String>
+    private val context: Context
     ) :
     RecyclerView.Adapter<TaskViewAdapter.ViewHolder>() {
 
-    //private var dataSet = mutableListOf<String>()
+    private var dataSet = mutableListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,7 +21,6 @@ class TaskViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int): Unit = with(holder) {
         binding.listOfItemsView.text = dataSet[position]
-
     }
 
     override fun getItemCount(): Int = dataSet.size
@@ -41,11 +37,6 @@ class TaskViewAdapter(
                 true
             }
         }
-    }
-
-    fun setTasks(listOfTask:MutableList<String>) {
-        this.dataSet = listOfTask
-        notifyItemChanged(0)
     }
 
     interface Listener{
