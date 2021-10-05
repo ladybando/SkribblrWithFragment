@@ -57,9 +57,6 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
         }
     }
 
-    //i've tried adding it to onViewCreated, creating a different function and then calling it
-    //and then onResume()
-    //the task is not edited. it's just added
     override fun onResume() {
         super.onResume()
         val editedInput = args.editUserInput
