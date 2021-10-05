@@ -78,7 +78,6 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
             RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(newUserInput, true)
         adapter.notifyDataSetChanged()
         findNavController().navigate(action)
-
     }
 
     override fun onLongTaskClicked(context: Context, index: Int) {
