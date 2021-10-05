@@ -16,7 +16,6 @@ import com.example.android.skribblrfragment.adapter.TaskViewAdapter
 import com.example.android.skribblrfragment.databinding.FragmentRecyclerViewBinding
 import com.example.android.skribblrfragment.model.SharedViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlinx.coroutines.processNextEventInCurrentThread
 
 class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
 
@@ -73,7 +72,7 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
         val newUserInput = viewModel.taskList[viewModel.listPosition]
         val action =
             RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(newUserInput, true)
-        adapter.notifyDataSetChanged()
+        adapter.notifyItemChanged(index)
         findNavController().navigate(action)
     }
 
