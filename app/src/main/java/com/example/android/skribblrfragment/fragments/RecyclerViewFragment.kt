@@ -68,15 +68,12 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
         }
     }
 
-    //upon return to RecyclerViewFragment
-
     override fun onTaskClicked(index: Int) {
-        //todo fix issue if user submits blank task
-        val taskToEditString = viewModel.taskList[index]
-        val action =
-            RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(
-                taskToEditString)
         viewModel.listPosition = index
+        val newUserInput = viewModel.taskList[viewModel.listPosition]
+        val action =
+            RecyclerViewFragmentDirections.actionRecyclerViewFragmentToTaskListFragment(newUserInput, true)
+        adapter.notifyDataSetChanged()
         findNavController().navigate(action)
     }
 
