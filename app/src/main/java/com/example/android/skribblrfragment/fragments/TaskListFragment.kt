@@ -17,7 +17,7 @@ class TaskListFragment : Fragment() {
     private var _binding: FragmentTaskListBinding? = null
     private val binding get() = _binding!!
     private val args: TaskListFragmentArgs by navArgs()
-    private val viewModel :SharedViewModel by activityViewModels()
+    private val viewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +37,13 @@ class TaskListFragment : Fragment() {
 
         binding.submitNewButton.setOnClickListener {
             val newInput = editTextView.text.toString()
-            viewModel.taskList.add(newInput)
+            val isInEditingMode = args.isEditingTask
+            // Only add the input to the existing list if we are not in editing mode. If we are in
+            // editing mode, the edited task is passed by to RecyclerViewFragment and handled in
+            // onResume()
+            if (!isInEditingMode) {
+                viewModel.taskList.add(newInput)
+            }
             val action =
                 TaskListFragmentDirections.actionTaskListFragmentToRecyclerViewFragment(newInput)
             findNavController().navigate(action)

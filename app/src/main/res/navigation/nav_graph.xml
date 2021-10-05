@@ -18,6 +18,10 @@
         <action
             android:id="@+id/action_taskListFragment_to_recyclerViewFragment"
             app:destination="@id/recyclerViewFragment" />
+        <argument
+            android:name="isEditingTask"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/recyclerViewFragment"
