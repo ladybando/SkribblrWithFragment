@@ -61,7 +61,7 @@ class RecyclerViewFragment : Fragment(), TaskViewAdapter.Listener {
         super.onResume()
         val editedInput = args.editUserInput
         val position = viewModel.listPosition
-        // Don't attempt the update any items in the list unless we have previously set a position
+        // Don't attempt to update any items in the list unless we have previously set a position
         // for the item that needs to be updated
         if (position != -1) {
             viewModel.taskList[position] = editedInput!!
